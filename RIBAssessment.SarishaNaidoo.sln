@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RIBAssessment.SarishaNaidoo", "RIBAssessment.SarishaNaidoo\RIBAssessment.SarishaNaidoo.csproj", "{2E01CF6B-B968-41F8-B116-F07C3C596B00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RIBAssessment.SarishaNaidoo", "RIBAssessment.SarishaNaidoo\RIBAssessment.SarishaNaidoo.csproj", "{2E01CF6B-B968-41F8-B116-F07C3C596B00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{E629C3AA-0F58-4FBB-B26A-E514095E7C3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{EFCD8269-7CD0-41ED-B4D5-8B527A158331}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{48E12610-DEEF-478D-B11E-5B55AFE1626A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{2E01CF6B-B968-41F8-B116-F07C3C596B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E01CF6B-B968-41F8-B116-F07C3C596B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E01CF6B-B968-41F8-B116-F07C3C596B00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E629C3AA-0F58-4FBB-B26A-E514095E7C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E629C3AA-0F58-4FBB-B26A-E514095E7C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E629C3AA-0F58-4FBB-B26A-E514095E7C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E629C3AA-0F58-4FBB-B26A-E514095E7C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFCD8269-7CD0-41ED-B4D5-8B527A158331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCD8269-7CD0-41ED-B4D5-8B527A158331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCD8269-7CD0-41ED-B4D5-8B527A158331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCD8269-7CD0-41ED-B4D5-8B527A158331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E12610-DEEF-478D-B11E-5B55AFE1626A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E12610-DEEF-478D-B11E-5B55AFE1626A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E12610-DEEF-478D-B11E-5B55AFE1626A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E12610-DEEF-478D-B11E-5B55AFE1626A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
