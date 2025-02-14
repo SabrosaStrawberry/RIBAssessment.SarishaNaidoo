@@ -1,0 +1,6 @@
+@RIBAssessment.SarishaNaidoo_HostAddress = http://localhost:5112
+
+GET {{RIBAssessment.SarishaNaidoo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
