@@ -595,3 +595,6 @@ node_modules/
 # Angular cache files (DO NOT TRACK)
 .angular/cache/
 /RIBAssessment.SarishaNaidoo/appsettings.Development.json
+RIBAssessment.SarishaNaidoo/ClientApp/package-lock.json
+RIBAssessment.SarishaNaidoo/ClientApp/package.json
+RIBAssessment.SarishaNaidoo/ClientApp/angular.json

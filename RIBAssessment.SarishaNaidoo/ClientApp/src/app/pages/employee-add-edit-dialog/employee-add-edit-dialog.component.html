@@ -1,0 +1,72 @@
+<div mat-dialog-title>
+    <h2 style="text-align: center;">{{ data ? 'Edit' : 'Add' }} Employee</h2>
+  </div>
+  
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" placeholder="e.g., David" formControlName="firstName">
+          <mat-error *ngIf="employeeForm.get('firstName')?.invalid && employeeForm.get('firstName')?.touched">
+            First Name is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="e.g., Smith" formControlName="lastName">
+          <mat-error *ngIf="employeeForm.get('lastName')?.invalid && employeeForm.get('lastName')?.touched">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput [matDatepicker]="dobPicker" formControlName="birthDate">
+          <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dobPicker></mat-datepicker>
+          <mat-error *ngIf="employeeForm.get('birthDate')?.invalid && employeeForm.get('birthDate')?.touched">
+            Date of Birth is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Employee Number</mat-label>
+          <input matInput formControlName="employeeNumber">
+          <mat-error *ngIf="employeeForm.get('employeeNumber')?.invalid && employeeForm.get('employeeNumber')?.touched">
+            Employee Number is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Employed Date</mat-label>
+          <input matInput [matDatepicker]="employedDatePicker" formControlName="employedDate">
+          <mat-datepicker-toggle matIconSuffix [for]="employedDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #employedDatePicker></mat-datepicker>
+          <mat-error *ngIf="employeeForm.get('employedDate')?.invalid && employeeForm.get('employedDate')?.touched">
+            Employed Date is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Terminated Date</mat-label>
+          <input matInput [matDatepicker]="terminatedDatePicker" formControlName="terminatedDate">
+          <mat-datepicker-toggle matIconSuffix [for]="terminatedDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #terminatedDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <div mat-dialog-actions class="action-btns">
+      <button mat-raised-button color="accent" type="submit">{{ data ? 'Update' : 'Save' }}</button>
+      <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancel</button>
+    </div>
+  </form>
+  

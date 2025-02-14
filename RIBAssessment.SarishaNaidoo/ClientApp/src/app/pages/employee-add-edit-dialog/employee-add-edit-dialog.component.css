@@ -1,0 +1,21 @@
+mat-form-field {
+    width: 100%;
+  }
+  
+  .row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
+  .action-btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  button {
+    min-width: 120px;
+  }
+  
