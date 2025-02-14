@@ -1,18 +1,16 @@
-<mat-toolbar color="primary">
-    <span>Employee Portal</span>
+<mat-toolbar class="custom-toolbar">
+    <span style="text-align: center;" class="toolbar-title">🚀 Employee Portal</span>
     <span class="example-spacer"></span>
-    <button mat-flat-button color="primary" (click)="openAddEditEmployeeDialog()">ADD EMPLOYEE</button>
+    <button mat-flat-button color="accent" class="add-employee-btn" (click)="openAddEditEmployeeDialog()">
+        <mat-icon>add</mat-icon> ADD EMPLOYEE
+    </button>
 </mat-toolbar>
 
 <div class="main-body">
     <mat-form-field aria-haspopup="outline">
         <mat-label>Filter</mat-label>
-        <input matInput [matAutocomplete]="auto" [formControl]="searchControl" (keyup)="applyFilter($event)" placeholder="e.g. David Smith">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option in filteredOptions" [value]="option">
-                {{ option }}
-            </mat-option>
-        </mat-autocomplete>
+        <input matInput (keyup)="applyFilter($event)" placeholder="e.g. David Smith">
+        
     </mat-form-field>
 
     <div class="table-container">

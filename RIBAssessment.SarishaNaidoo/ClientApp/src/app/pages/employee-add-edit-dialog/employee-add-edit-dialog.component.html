@@ -25,7 +25,7 @@
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Date of Birth</mat-label>
-          <input matInput [matDatepicker]="dobPicker" formControlName="birthDate">
+          <input matInput [matDatepicker]="dobPicker" formControlName="birthDate" readonly>
           <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
           <mat-datepicker #dobPicker></mat-datepicker>
           <mat-error *ngIf="employeeForm.get('birthDate')?.invalid && employeeForm.get('birthDate')?.touched">
@@ -47,20 +47,21 @@
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Employed Date</mat-label>
-          <input matInput [matDatepicker]="employedDatePicker" formControlName="employedDate">
+          <input matInput [matDatepicker]="employedDatePicker" formControlName="employedDate" readonly>
           <mat-datepicker-toggle matIconSuffix [for]="employedDatePicker"></mat-datepicker-toggle>
           <mat-datepicker #employedDatePicker></mat-datepicker>
           <mat-error *ngIf="employeeForm.get('employedDate')?.invalid && employeeForm.get('employedDate')?.touched">
             Employed Date is required
           </mat-error>
         </mat-form-field>
-  
+
         <mat-form-field appearance="outline">
-          <mat-label>Terminated Date</mat-label>
-          <input matInput [matDatepicker]="terminatedDatePicker" formControlName="terminatedDate">
-          <mat-datepicker-toggle matIconSuffix [for]="terminatedDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #terminatedDatePicker></mat-datepicker>
-        </mat-form-field>
+            <mat-label>Terminated Date</mat-label>
+            <input matInput [matDatepicker]="terminatedDatePicker" formControlName="terminatedDate" readonly>
+            <mat-datepicker-toggle matIconSuffix [for]="terminatedDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #terminatedDatePicker></mat-datepicker>
+
+          </mat-form-field>
       </div>
     </div>
   

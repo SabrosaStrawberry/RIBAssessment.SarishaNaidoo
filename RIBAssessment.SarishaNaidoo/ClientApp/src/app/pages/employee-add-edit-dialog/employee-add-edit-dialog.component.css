@@ -1,12 +1,13 @@
 mat-form-field {
     width: 100%;
   }
-  
+
   .row {
     display: flex;
-    gap: 20px;
     justify-content: space-between;
-  }
+    gap: 20px;
+    margin-bottom: 10px;
+}
   
   .action-btns {
     display: flex;
@@ -17,5 +18,32 @@ mat-form-field {
   
   button {
     min-width: 120px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 100px;
+    border-radius: 8px;
+  }
+  
+  button.mat-accent {
+    background-color: #083112 !important;
+    color: white !important;
+  }
+  
+  button.mat-warn {
+    background-color: #8e8e8e !important;
+    color: white !important;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
   }
   
