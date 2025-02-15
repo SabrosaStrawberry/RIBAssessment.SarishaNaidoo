@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database
+namespace Database.Configurations
 {
     public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
     {
@@ -18,7 +18,7 @@ namespace Database
                 {
                     EmployeeId = 1,
                     EmployeeNumber = "ABC123",
-                    EmployedDate = new DateTime(2025,2,14),
+                    EmployedDate = new DateTime(2025, 2, 14),
                     PersonId = 1,
                 },
                 new Employee

@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Database.Configurations;
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 
