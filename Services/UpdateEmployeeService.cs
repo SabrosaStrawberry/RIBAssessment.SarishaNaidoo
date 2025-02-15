@@ -2,23 +2,17 @@
 using Database;
 using Domain.DTOs;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
 
-    public class UpdateEmployee : IUpdateEmployee
+    public class UpdateEmployeeService : IUpdateEmployeeService
     {
         private readonly DatabaseContext _dbcontext;
         private readonly IMapper _mapper;
         //TODO: Add logger
-        public UpdateEmployee(DatabaseContext dbContext,
+        public UpdateEmployeeService(DatabaseContext dbContext,
             IMapper mapper)
         {
             _dbcontext = dbContext;

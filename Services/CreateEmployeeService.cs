@@ -6,12 +6,12 @@ using Services.Interfaces;
 
 namespace Services
 {
-    public class CreateorEditEmployee : ICreateOrEditEmployee
+    public class CreateEmployeeService : ICreateEmployeeService
     {
         private readonly DatabaseContext _dbcontext;
         private readonly IMapper _mapper;
         //TODO: Add logger
-        public CreateorEditEmployee(DatabaseContext dbContext,
+        public CreateEmployeeService(DatabaseContext dbContext,
             IMapper mapper)
         {
             _dbcontext = dbContext;

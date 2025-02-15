@@ -1,6 +1,6 @@
 ﻿namespace Services.Interfaces
 {
-    public interface IDeleteEmployee
+    public interface IDeleteEmployeeService
     {
         Task<bool> DeleteEmployeeAsync(int Id);
     }
