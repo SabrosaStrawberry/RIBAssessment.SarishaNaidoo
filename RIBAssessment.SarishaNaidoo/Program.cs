@@ -6,9 +6,22 @@ using Domain.Profiles;
 using System.Reflection;
 using Domain.Models;
 using Microsoft.AspNetCore.Identity;
+using NLog.Web;
+using NLog;
+using RIBAssessment.SarishaNaidoo.CustomExtenstionMiddleware;
+using FluentValidation.AspNetCore;
+using Domain.Validators;
+using FluentValidation;
+using RIBAssessment.SarishaNaidoo.ServiceExtensions;
 
+
+var logger = NLog.LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {
@@ -16,19 +29,21 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 });
 
-//configure automapper
-//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-//builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddAutoMapper(typeof(EmployeeProfile));
 
-//TODO: Separate into independent file if application is large
-builder.Services.AddScoped<IGetEmployees, GetEmployees>();
-builder.Services.AddScoped<ICreateOrEditEmployee, CreateorEditEmployee>();
-builder.Services.AddScoped<IUpdateEmployee, UpdateEmployee>();
-builder.Services.AddScoped<IDeleteEmployee, DeleteEmployee>();
-// Add services to the container.
+//configure automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+//DI for services
+builder.Services.AddApplicationServices();
+
 
 builder.Services.AddControllers();
+
+// Register validators from the assembly containing EmployeePersonDTOValidator
+builder.Services.AddFluentValidationAutoValidation(); 
+builder.Services.AddValidatorsFromAssemblyContaining<EmployeePersonDTOValidator>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -38,6 +53,9 @@ builder.Services.AddSwaggerGen();
 //    .AddEntityFrameworkStores<DatabaseContext>();
 
 var app = builder.Build();
+
+//Custom Exception Handling - I chose this method as it is flexible and allows us to define comprehensive error handling strategies
+app.UseExceptionHandler(opt => { });
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -61,4 +79,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
