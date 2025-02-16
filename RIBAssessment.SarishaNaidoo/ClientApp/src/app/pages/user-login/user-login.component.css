@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #2E7D32, #b5e4b8); /* Emerald Green Theme */
+    background: linear-gradient(to right, #2E7D32, #b5e4b8);  
   }
   
   /* Style the login card with a glass effect */
@@ -54,9 +54,14 @@
     background: #43A047; /* Green shade */
     color: white;
   }
+
+  button.mat-accent {
+    background-color: #083112 !important;
+    color: white !important;
+  }
   
   button:hover {
-    background: #2E7D32;
+    background: #5fc765;
     transform: scale(1.05);
   }
   
