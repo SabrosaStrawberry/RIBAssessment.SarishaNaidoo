@@ -11,6 +11,7 @@ namespace Domain.Models
         public string FirstName { get; set; }= string.Empty;
         public DateTimeOffset BirthDate { get; set; }
         public Employee Employee { get; set; }
+        public string FullName => FirstName + " " + LastName;
 
     }
 }

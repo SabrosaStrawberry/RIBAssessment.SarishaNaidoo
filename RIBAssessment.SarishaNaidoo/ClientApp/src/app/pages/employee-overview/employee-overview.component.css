@@ -96,3 +96,10 @@ mat-form-field {
         transform: translateY(0);
     }
 }
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
