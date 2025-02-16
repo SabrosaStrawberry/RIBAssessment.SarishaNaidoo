@@ -7,6 +7,9 @@ import { MatSort } from '@angular/material/sort';
 import { EmployeeService } from '../../shared/services/employee.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, Observable, startWith } from 'rxjs';
+import { Employee } from '../../shared/models/employee';
+import { AuthService } from '../../shared/services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-overview',
@@ -22,7 +25,7 @@ export class EmployeeOverviewComponent implements OnInit {
   dataSource = new MatTableDataSource<any>([]);
   filteredOptions!: Observable<string[]>;
   formGroup!: FormGroup;
-  employeeList: employee[] = [];
+  employeeList: Employee[] = [];
   loading: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,7 +33,9 @@ export class EmployeeOverviewComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
     private employeeService: EmployeeService,
-    private formBuilder: FormBuilder) { }
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -134,20 +139,20 @@ export class EmployeeOverviewComponent implements OnInit {
     if (confirm("Are you sure you want to delete this employee?")) {
       this.employeeService.deleteEmployee(id).subscribe({
         next: () => {
-          alert('Employee deleted!');
+          this.snackBar.open(
+            'Employee Deleted Successfully',
+            'Close',
+            { duration: 3000 }
+          );
+
           this.getEmployeeList();
         },
         error: (err) => console.error(err),
       });
     }
   }
-}
 
-interface employee {
-  firstName: string;
-  lastName: string;
-  employeeNumber: string;
-  employedDate: Date;
-  terminatedDate: Date;
-  fullName: string;
+  logout(){
+    this.authService.logout();
+  }
 }

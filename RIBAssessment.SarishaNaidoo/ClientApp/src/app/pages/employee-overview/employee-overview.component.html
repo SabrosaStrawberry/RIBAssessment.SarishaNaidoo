@@ -4,6 +4,9 @@
     <button mat-flat-button color="accent" class="add-employee-btn" (click)="openAddEditEmployeeDialog()">
         <mat-icon>add</mat-icon> ADD EMPLOYEE
     </button>
+    <button mat-icon-button style="color: white;" matTooltip="Logout" (click)="logout()">
+        <mat-icon>logout</mat-icon> 
+    </button>
 </mat-toolbar>
 
 <div class="main-body">
@@ -60,10 +63,10 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Action</th>
                 <td mat-cell *matCellDef="let row">
-                    <button mat-icon-button color="primary" (click)="openAddEditEmployeeDialog(row)">
+                    <button mat-icon-button matTooltip="Edit Employee" color="primary" (click)="openAddEditEmployeeDialog(row)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button color="warn" (click)="deleteEmployee(row.employeeId)">
+                    <button mat-icon-button matTooltip="Delete Employee" color="warn" (click)="deleteEmployee(row.employeeId)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>
