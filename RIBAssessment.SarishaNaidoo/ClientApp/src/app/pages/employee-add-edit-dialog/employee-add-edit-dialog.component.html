@@ -1,8 +1,6 @@
-<div mat-dialog-title>
-    <h2 style="text-align: center;">{{ data ? 'Edit' : 'Add' }} Employee</h2>
-  </div>
+  <h2 style="text-align: center;">{{ data ? 'Edit' : 'Add' }} Employee</h2>
   
-  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" [ngClass]="{ 'form-disabled': isLoading }">
     <div mat-dialog-content class="content">
       <div class="row">
         <mat-form-field appearance="outline">
@@ -60,14 +58,20 @@
             <input matInput [matDatepicker]="terminatedDatePicker" formControlName="terminatedDate" readonly>
             <mat-datepicker-toggle matIconSuffix [for]="terminatedDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #terminatedDatePicker></mat-datepicker>
-
+            <mat-error *ngIf="employeeForm.get('terminatedDate')?.hasError('dateRange')">
+              Terminated Date must be after Employed Date
+            </mat-error>
           </mat-form-field>
       </div>
     </div>
   
     <div mat-dialog-actions class="action-btns">
-      <button mat-raised-button color="accent" type="submit">{{ data ? 'Update' : 'Save' }}</button>
-      <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancel</button>
-    </div>
+        <button mat-raised-button color="accent" type="submit" [disabled]="isLoading">
+          {{ data ? 'Update' : 'Save' }}
+        </button>
+        <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false" [disabled]="isLoading">
+          Cancel
+        </button>
+      </div>
   </form>
   
