@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Client, EmployeePersonDTO } from '../../../generate-api';
+import { EmployeesClient, EmployeePersonDTO } from '../../../generate-api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor(private employeeClient: Client) {}
+  constructor(private employeeClient: EmployeesClient) { }
 
-  getEmployees(): Observable<any[]> {
-    return this.employeeClient.getEmployees();
+  getEmployees(searchTerm: string | null): Observable<any[]> {
+    return this.employeeClient.employeesGet(searchTerm ?? undefined);
   }
 
   addEmployee(employee: EmployeePersonDTO): Observable<any> {
-    return this.employeeClient.employeePOST(employee);
+    return this.employeeClient.employeesPost(employee);
   }
 
   updateEmployee(id: number, employee: EmployeePersonDTO): Observable<any> {
-    return this.employeeClient.employeePUT(id,employee);
+    return this.employeeClient.employeesPut(id, employee);
   }
 
   deleteEmployee(employeeId: number): Observable<any> {
-    return this.employeeClient.employeeDELETE(employeeId);
+    return this.employeeClient.employeesDelete(employeeId);
   }
 }

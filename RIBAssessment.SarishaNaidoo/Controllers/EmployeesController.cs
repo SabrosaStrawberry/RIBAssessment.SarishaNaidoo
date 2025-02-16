@@ -1,4 +1,5 @@
 ﻿using Domain.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 
@@ -29,23 +30,23 @@ namespace SarishaNaidooRIBAssessment.Controllers
 
         //Get employees, also allows for search
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<EmployeePersonDTO>>> Get([FromQuery] string? search)
         {
-            //throw new Exception("Test exception");
-            _logger.LogDebug("Get Employees method called");
             return await _getEmployees.GetEmployeeList(search ?? string.Empty);
         }
 
         // GET: api/Employee/5 → Get Employee by ID
-        [HttpGet("{id}")]
-        public async Task<ActionResult<List<EmployeePersonDTO>>> GetEmployeeById([FromQuery] string? search)
-        {
-            return await _getEmployees.GetEmployeeList(search ?? string.Empty);
-        }
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<List<EmployeePersonDTO>>> GetEmployeeById([FromQuery] string? search)
+        //{
+        //    return await _getEmployees.GetEmployeeList(search ?? string.Empty);
+        //}
 
 
         // POST: api/Employee → Create New Employee
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<EmployeePersonDTO>> CreateEmployee([FromBody] EmployeePersonDTO employee)
         {
             var result = await _createOrEditEmployee.CreateEmployee(employee);
@@ -59,6 +60,7 @@ namespace SarishaNaidooRIBAssessment.Controllers
 
         // 🔹 PUT: api/Employees/5 → Update Employee
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateEmployee(int id, EmployeePersonDTO employeePersonDTO)
         {
 
@@ -70,6 +72,7 @@ namespace SarishaNaidooRIBAssessment.Controllers
 
         // 🔹 DELETE: api/Employees/5 → Delete Employee
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             var employeeFound = await _deleteEmployee.DeleteEmployeeAsync(id);

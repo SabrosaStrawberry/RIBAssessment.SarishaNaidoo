@@ -14,12 +14,13 @@ namespace Database
 
         }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Person> Persons { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //base.OnModelCreating(modelBuilder);
+
 
             modelBuilder.Entity<Employee>()
                 .HasOne(e => e.Person)
@@ -27,9 +28,12 @@ namespace Database
                 .HasForeignKey<Employee>(e => e.PersonId)
                 .IsRequired();
 
+            //TODO: Add indexes??
 
             modelBuilder.ApplyConfiguration(new PersonConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

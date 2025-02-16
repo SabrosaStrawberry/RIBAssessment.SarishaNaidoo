@@ -8,6 +8,7 @@ namespace RIBAssessment.SarishaNaidoo.ServiceExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IGetEmployeeService, GetEmployeeService>();
             services.AddScoped<ICreateEmployeeService, CreateEmployeeService>();
             services.AddScoped<IUpdateEmployeeService, UpdateEmployeeService>();

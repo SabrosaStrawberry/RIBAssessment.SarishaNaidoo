@@ -1,0 +1,82 @@
+/* Background with a green gradient */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #2E7D32, #b5e4b8); /* Emerald Green Theme */
+  }
+  
+  /* Style the login card with a glass effect */
+  .login-card {
+    width: 400px;
+    padding: 30px;
+    text-align: center;
+    background: white; /* Glass effect */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Add spacing and white text to form fields */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  mat-label,
+  input {
+    color: black !important;
+  }
+  
+  mat-form-field .mat-input-element {
+    caret-color: black;
+  }
+  
+  mat-form-field .mat-form-field-outline {
+    border-color: black !important;
+  }
+  
+  /* Style the login button */
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s;
+    border: 10ch;
+  }
+  
+  /* Green animated button */
+  button {
+    background: #43A047; /* Green shade */
+    color: white;
+  }
+  
+  button:hover {
+    background: #2E7D32;
+    transform: scale(1.05);
+  }
+  
+  /* Loading spinner inside button */
+  mat-spinner {
+    margin-right: 8px;
+  }
+  
+  /* Error message styling */
+  mat-error {
+    color: #ff0000; /* Yellow */
+    display: block;
+    margin-top: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 500px) {
+    .login-card {
+      width: 90%;
+      padding: 20px;
+    }
+  }
+  
