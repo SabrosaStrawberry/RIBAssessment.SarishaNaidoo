@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Angular Material Modules
@@ -18,20 +18,26 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { EmployeeAddEditDialogComponent } from './pages/employee-add-edit-dialog/employee-add-edit-dialog.component';
 import { EmployeeOverviewComponent } from './pages/employee-overview/employee-overview.component';
-import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { EmployeeService } from './shared/services/employee.service';
-import { Client } from '../generate-api';
+import { AuthClient, EmployeesClient } from '../generate-api';
+import { UserLoginComponent } from './pages/user-login/user-login.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeOverviewComponent,
-    EmployeeAddEditDialogComponent
+    EmployeeAddEditDialogComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +45,8 @@ import { Client } from '../generate-api';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forChild([]),
-
+    AppRoutingModule,
+    //RouterModule.forRoot([]),
     // Angular Material Modules
     MatToolbarModule,
     MatTableModule,
@@ -54,11 +60,16 @@ import { Client } from '../generate-api';
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   providers: [
     EmployeeService,
-    Client
+    AuthClient,
+    EmployeesClient,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
