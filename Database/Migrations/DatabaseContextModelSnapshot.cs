@@ -35,7 +35,8 @@ namespace Database.Migrations
 
                     b.Property<string>("EmployeeNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<int>("PersonId")
                         .HasColumnType("int");
@@ -44,6 +45,9 @@ namespace Database.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("EmployeeId");
+
+                    b.HasIndex("EmployeeNumber")
+                        .IsUnique();
 
                     b.HasIndex("PersonId")
                         .IsUnique();

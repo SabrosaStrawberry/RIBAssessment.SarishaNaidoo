@@ -22,7 +22,7 @@ namespace Domain.Validators
 
             RuleFor(x => x.EmployeeNumber)
                .NotEmpty().WithMessage("Employee Number is Required")
-               .MaximumLength(8).WithMessage("Employee Number cannot exceed 8 characters");
+               .MaximumLength(16).WithMessage("Employee Number cannot exceed 16 characters");
 
             RuleFor(x => x.BirthDate)
                .NotEmpty().WithMessage("Date of Birth is Required");
