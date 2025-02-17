@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using Database;
 using Domain.Models;
+using Services.Interfaces;
 
 public class AuthService : IAuthService
 {
