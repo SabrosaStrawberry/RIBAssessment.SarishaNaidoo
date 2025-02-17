@@ -18,7 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
@@ -31,6 +31,7 @@ import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,8 +47,6 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    //RouterModule.forRoot([]),
-    // Angular Material Modules
     MatToolbarModule,
     MatTableModule,
     MatPaginatorModule,
@@ -69,7 +68,8 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
     AuthClient,
     EmployeesClient,
     AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

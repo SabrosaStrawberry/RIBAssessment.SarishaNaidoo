@@ -36,8 +36,11 @@
         <mat-form-field appearance="outline">
           <mat-label>Employee Number</mat-label>
           <input matInput formControlName="employeeNumber">
-          <mat-error *ngIf="employeeForm.get('employeeNumber')?.invalid && employeeForm.get('employeeNumber')?.touched">
+          <mat-error *ngIf="employeeForm.get('employeeNumber')?.invalid && employeeForm.get('employeeNumber')?.touched && !(employeeForm.get('employeeNumber')?.hasError('exactLength'))">
             Employee Number is required
+          </mat-error>
+          <mat-error *ngIf="employeeForm.get('employeeNumber')?.hasError('exactLength')">
+            Employee number must be exactly 16 characters
           </mat-error>
         </mat-form-field>
       </div>

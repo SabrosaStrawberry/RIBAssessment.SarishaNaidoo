@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmployeeService } from '../../shared/services/employee.service';
 import { Employee } from '../../shared/models/employee';
+import { dateRangeValidator, exactLengthValidator } from '../../shared/utils/custom-validators';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class EmployeeAddEditDialogComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       birthDate: ['', Validators.required],
-      employeeNumber: ['', Validators.required],
+      employeeNumber: ['', [Validators.required, exactLengthValidator(16)]],
       employedDate: ['', Validators.required],
       terminatedDate: [null, dateRangeValidator('employedDate')],
 
@@ -72,22 +73,11 @@ export class EmployeeAddEditDialogComponent implements OnInit {
           'Close',
           { duration: 3000 }
         );
+        this.isLoading = false;
       },
       complete: () => {
         this.isLoading = false;
       },
     });
-  }
-}
-
-export function dateRangeValidator(employedDateControlName: string): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const employedDate = control.parent?.get(employedDateControlName)?.value;
-    const terminatedDate = control.value;
-
-    if (employedDate && terminatedDate && new Date(terminatedDate) < new Date(employedDate)) {
-      return { dateRange: true }; 
-    }
-    return null; 
   }
 }
