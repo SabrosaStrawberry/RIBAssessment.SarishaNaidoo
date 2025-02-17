@@ -26,12 +26,13 @@ import { EmployeeAddEditDialogComponent } from './pages/employee-add-edit-dialog
 import { EmployeeOverviewComponent } from './pages/employee-overview/employee-overview.component';
 import { RouterModule } from '@angular/router';
 import { EmployeeService } from './shared/services/employee.service';
-import { AuthClient, EmployeesClient } from '../generate-api';
+import { API_BASE_URL, AuthClient, EmployeesClient } from '../generate-api';
 import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+import { environment } from './environment/environment';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
     EmployeesClient,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: API_BASE_URL, useValue: environment.apiUrl }
   ],
   bootstrap: [AppComponent]
 })

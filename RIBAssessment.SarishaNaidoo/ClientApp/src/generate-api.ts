@@ -36,7 +36,7 @@ export class AuthClient implements IAuthClient {
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
-        this.baseUrl = baseUrl ?? "https://localhost:44300";
+        this.baseUrl = baseUrl ?? "";
     }
 
     /**
@@ -177,7 +177,7 @@ export class EmployeesClient implements IEmployeesClient {
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
-        this.baseUrl = baseUrl ?? "https://localhost:44300";
+        this.baseUrl = baseUrl ?? "";
     }
 
     /**
