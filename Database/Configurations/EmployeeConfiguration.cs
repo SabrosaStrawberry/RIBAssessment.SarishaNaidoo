@@ -17,20 +17,20 @@ namespace Database.Configurations
                 new Employee
                 {
                     EmployeeId = 1,
-                    EmployeeNumber = "ABC123",
+                    EmployeeNumber = "ABC1234567891011",
                     EmployedDate = new DateTime(2025, 2, 14),
                     PersonId = 1,
                 },
                 new Employee
                 {
                     EmployeeId = 2,
-                    EmployeeNumber = "ASD345",
+                    EmployeeNumber = "ASD1234567891011",
                     EmployedDate = new DateTime(2025, 2, 14),
                     PersonId = 2,
                 }, new Employee
                 {
                     EmployeeId = 3,
-                    EmployeeNumber = "QWE456",
+                    EmployeeNumber = "QWE1234567891011",
                     EmployedDate = new DateTime(2025, 2, 14),
                     PersonId = 3,
                 }

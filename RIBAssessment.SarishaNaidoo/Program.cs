@@ -19,28 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//})
-//.AddJwtBearer(options =>
-//{
-//    options.RequireHttpsMetadata = false;
-//    options.SaveToken = true;
-//    options.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidateIssuer = true,
-//        ValidateAudience = true,
-//        ValidateLifetime = true,
-//        ValidateIssuerSigningKey = true,
-//        ValidIssuer = jwtSettings["Issuer"],
-//        ValidAudience = jwtSettings["Audience"],
-//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]))
-//    };
-//});
-
-
+//Configure JWT Settings
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -57,7 +36,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
         };
 
-        
+
         options.Events = new JwtBearerEvents
         {
             OnAuthenticationFailed = context =>
@@ -76,8 +55,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+//Configure project to use NLog
 builder.Logging.ClearProviders();
 builder.Host.UseNLog();
+
+//Configure project to use Global Exception Handler
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
@@ -98,7 +80,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddControllers();
 
 // Register validators from the assembly containing EmployeePersonDTOValidator
-builder.Services.AddFluentValidationAutoValidation(); 
+builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<EmployeePersonDTOValidator>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -112,7 +94,7 @@ builder.Services.AddSwaggerGen(c =>
         Description = "API for user authentication using JWT"
     });
 
- 
+
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -140,11 +122,15 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-////Configure Entity Providers for authentication
-//builder.Services.AddIdentity<User, IdentityRole>()
-//    .AddEntityFrameworkStores<DatabaseContext>();
-
 var app = builder.Build();
+
+// Apply migrations at startup:
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    dbContext.Database.Migrate();
+}
+
 
 //Custom Exception Handling - I chose this method as it is flexible and allows us to define comprehensive error handling strategies
 app.UseExceptionHandler(opt => { });

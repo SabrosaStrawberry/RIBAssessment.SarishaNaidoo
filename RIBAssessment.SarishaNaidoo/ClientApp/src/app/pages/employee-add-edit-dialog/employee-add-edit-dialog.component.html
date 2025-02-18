@@ -35,8 +35,8 @@
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Employee Number</mat-label>
-          <input matInput formControlName="employeeNumber">
-          <mat-error *ngIf="employeeForm.get('employeeNumber')?.invalid && employeeForm.get('employeeNumber')?.touched && !(employeeForm.get('employeeNumber')?.hasError('exactLength'))">
+          <input matInput formControlName="employeeNumber" maxlength="16">
+          <mat-error *ngIf="employeeForm.get('employeeNumber')?.invalid && employeeForm.get('employeeNumber')?.touched">
             Employee Number is required
           </mat-error>
           <mat-error *ngIf="employeeForm.get('employeeNumber')?.hasError('exactLength')">
