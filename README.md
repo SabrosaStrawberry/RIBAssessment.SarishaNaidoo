@@ -20,7 +20,7 @@ Before running the project, ensure you have the following installed:
 1. Navigate to appsettings.json to set up your connection string to SQL SERVER
 2. Update the environment file in the angular project with the URL and port number that the API is running on
 3. EF Core Code First was used to create the db, and the db should be created for you when you run the project
-   for the first time, but the dacpac and SQL scripts that can be used to create the db have been provided as well.
+   for the first time, but the bacpac and SQL scripts that can be used to create the db have been provided as well.
 4. JWT auth has been used for this simple application, register your email (or any string with the correct email format as there is no verification step)
    and use these credentials to login thereafter.
 
