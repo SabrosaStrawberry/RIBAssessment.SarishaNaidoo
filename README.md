@@ -23,4 +23,11 @@ Before running the project, ensure you have the following installed:
    for the first time, but the bacpac and SQL scripts that can be used to create the db have been provided as well.
 4. JWT auth has been used for this simple application, register your email (or any string with the correct email format as there is no verification step)
    and use these credentials to login thereafter.
+5. If you plan to run the scripts or import the bacpac file, please comment out the following code:
+```   
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    dbContext.Database.Migrate();
+}
 
